@@ -7,6 +7,10 @@ import { contactrouter } from './contact/contact.router.js';
 import cors from 'cors';
 import dotenv from 'dotenv';
 const server=express();
+const corsOptions = {
+    origin: 'https://tubular-hamster-fec4cc.netlify.app', // Replace with your frontend URL
+    optionsSuccessStatus: 200
+  };
 server.use(cors()); 
 server.use(express.urlencoded({ extended: true }));
 server.use(express.json()); 
