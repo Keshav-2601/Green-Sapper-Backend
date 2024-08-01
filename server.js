@@ -7,11 +7,11 @@ import { contactrouter } from './contact/contact.router.js';
 import cors from 'cors';
 import dotenv from 'dotenv';
 const server=express();
-const corsOptions = {
-    origin: 'https://greensapper.netlify.app/Contacts', // Replace with your frontend URL
-    optionsSuccessStatus: 200
-  };
-server.use(cors(corsOptions),contactrouter); 
+// const corsOptions = {
+//     origin: 'https://greensapper.netlify.app/Contacts', // Replace with your frontend URL
+//     optionsSuccessStatus: 200
+//   };
+//server.use(cors(corsOptions)); 
 server.use(express.urlencoded({ extended: true }));
 server.use(express.json()); 
 server.use('/service',servicerouter);
