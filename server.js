@@ -8,7 +8,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 const server=express();
 const corsOptions = {
-    origin: 'https://tubular-hamster-fec4cc.netlify.app', // Replace with your frontend URL
+    origin: 'https://greensapper.netlify.app', // Replace with your frontend URL
     optionsSuccessStatus: 200
   };
 server.use(cors()); 
