@@ -8,7 +8,6 @@ const contactControl=new contactcontroller();
 contactrouter.post('/' ,async (req, res) => {
     try {
         console.log('Received request:', req.body);
-         // Log the received file
         await contactControl.get(req, res);
     } catch (error) {
         console.log("Error in POST /Contacts:", error);
