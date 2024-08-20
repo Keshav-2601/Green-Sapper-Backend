@@ -3,22 +3,32 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const url = process.env.MONGODB_URL;
-
 let client;
+let clientPromise;
+
 const mongodbconnection = async () => {
-  try {
-    await MongoClient.connect(url).then((res) => {
-      client = res;
+  if (!clientPromise) {
+    clientPromise = MongoClient.connect(process.env.MONGODB_URL, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }).then((mongoClient) => {
+      client = mongoClient;
       console.log('Db is connected');
+      return mongoClient;
+    }).catch(err => {
+      console.log('Failed to connect to the database', err);
+      throw err;
     });
-  } catch (err) {
-    console.log('some error', err);
   }
+
+  return clientPromise;
 };
 
 const getdb = () => {
-  return client.db(); //connect to actual db 
+  if (!client) {
+    throw new Error('Must call mongodbconnection() before calling getdb()');
+  }
+  return client.db();
 };
 
 export { mongodbconnection, getdb };
